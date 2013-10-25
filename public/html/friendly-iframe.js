@@ -21,17 +21,23 @@ if(returningVisitor && clientId){
   gaConfig['clientId'] = clientId;
 }else{
 
-     gaLocal(function(tracker) {
+	gaLocal(function(tracker) {
     var clientId = tracker.get('clientId');
-    console.log('aca le paso el clientId por pixel a todos !!' + clientId)
+    console.log('aca le paso el clientId por pixel a todos !!' + clientId);
+
+
+    new Image().src = "//analytics.mercadolibre.com.ar/load.gif?clientId=" + encodeURIComponent(clientId) ;
+
+    new Image().src = "//analytics.mercadolibre.com/jms/mla/load.gif?clientId=" + encodeURIComponent(clientId) ;
+
+    new Image().src = "//analytics.mercadopago.com.ar/load.gif?clientId=" + encodeURIComponent(clientId) ;
+
+    new Image().src = "//analytics.mercadopago.com/mla/load.gif?clientId=" + encodeURIComponent(clientId) ;
   });
 
 }
 
-
-gaLocal('create', 'UA-42736032-5', 'herokuapp-dev.com', {
-  'clientId': '796758075.1382648250'
-});
+gaLocal('create', 'UA-42736032-5', 'herokuapp-dev.com', gaConfig);
 
 
 window.parent['ga'].q = window['queue'].concat(window.parent['ga'].q);
